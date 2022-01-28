@@ -8,4 +8,9 @@ package jonathan.mason.protomovies.api
  * [description] of [Movie].
  * [imageURLs] of [Movie].
  */
-class Movie(var id: Int = -1, var title: String = "", var description: String = "", var imageURLs: Array<String> = arrayOf<String>()) { }
+class Movie(var id: Int = -1, var title: String = "", var description: String = "", var duration: String = "", var releaseDate: String = "", var images: Array<Image> = arrayOf<Image>()) { }
+
+/**
+ * Images of [Movie].
+ */
+class Image(var url: String = "", var type: String = "")

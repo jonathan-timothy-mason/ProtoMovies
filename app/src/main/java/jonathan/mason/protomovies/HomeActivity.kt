@@ -17,6 +17,11 @@ class HomeActivity : AppCompatActivity() {
         this.setTitle(R.string.home_screen_caption)
 
         this.setupViewModel()
+
+        // Now that search text and filter have been restored, load lunchbenches for the first time
+        // since starting app, if necessary.
+        if(!viewModel.isDataLoaded)
+            viewModel.loadMovies()
     }
 
     /**
