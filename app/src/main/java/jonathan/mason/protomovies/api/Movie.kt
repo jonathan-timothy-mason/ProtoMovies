@@ -1,6 +1,11 @@
 package jonathan.mason.protomovies.api
 
 /**
+ * Key for storing state in bundles.
+ */
+const val EXTRA_MOVIE_ID = "EXTRA_MOVIE_ID"
+
+/**
  * [Movie] object for use with API.
  *
  * [id] of [Movie].

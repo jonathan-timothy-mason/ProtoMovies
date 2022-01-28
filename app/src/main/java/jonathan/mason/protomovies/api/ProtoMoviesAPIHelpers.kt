@@ -25,8 +25,6 @@ class ProtoMoviesAPIHelpers {
          * Load all [Movie]s.
          */
         fun loadMovies(application: Application, movies: MutableLiveData<List<Movie>>) {
-            //movies.value = mutableListOf()
-
             // Call API function on separate thread.
             api.getMovies().enqueue(object: Callback<List<Movie>> {
                 /**
