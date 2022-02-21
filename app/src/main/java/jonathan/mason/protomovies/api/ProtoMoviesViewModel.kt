@@ -25,7 +25,7 @@ class ProtoMoviesViewModel(application: Application) : AndroidViewModel(applicat
     /**
      * Load all [Movie]s.
      */
-    fun loadMovies() {
+    suspend fun loadMovies() {
         isDataLoaded = true
         ProtoMoviesAPIHelpers.loadMovies(this.getApplication(), movies)
     }

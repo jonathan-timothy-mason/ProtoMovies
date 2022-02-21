@@ -13,8 +13,9 @@ import jonathan.mason.protomovies.api.Movie
 import jonathan.mason.protomovies.api.ProtoMoviesViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.launch
 
-class HomeActivity : AppCompatActivity(), MoviesAdapter.MovieSelectionListener {
+class HomeActivity : AppCompatActivity(), MoviesAdapter.MovieSelectionListener, CoroutineScope by MainScope() {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var viewModel: ProtoMoviesViewModel
@@ -31,10 +32,12 @@ class HomeActivity : AppCompatActivity(), MoviesAdapter.MovieSelectionListener {
 
         this.setupViewModel()
 
-        // Now that search text and filter have been restored, load lunchbenches for the first time
-        // since starting app, if necessary.
-        if(!viewModel.isDataLoaded)
-            viewModel.loadMovies()
+        launch {
+            // Now that search text and filter have been restored, load lunchbenches for the first time
+            // since starting app, if necessary.
+            if (!viewModel.isDataLoaded)
+                viewModel.loadMovies()
+        }
     }
 
     /**

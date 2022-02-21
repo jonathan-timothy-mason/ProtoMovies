@@ -28,21 +28,18 @@ class ProtoMoviesAPIHelpers {
         /**
          * Load all [Movie]s.
          */
-        fun loadMovies(application: Application, movies: MutableLiveData<List<Movie>>) = runBlocking {
-            // launching a new coroutine
-            launch {
-                try {
-                    // Call API function on separate thread.
-                    var response = api.getMovies()
-                    val tempMovies = response.body()
-                    if (tempMovies != null && tempMovies.size > 0) {
-                        movies.value = tempMovies
-                    }
+        suspend fun loadMovies(application: Application, movies: MutableLiveData<List<Movie>>) {
+            try {
+                // Call API function on separate thread.
+                var response = api.getMovies()
+                val tempMovies = response.body()
+                if (tempMovies != null && tempMovies.size > 0) {
+                    movies.value = tempMovies
                 }
-                catch (error: Exception)
-                {
-                    Toast.makeText(application, error.message, Toast.LENGTH_LONG).show()
-                }
+            }
+            catch (error: Exception)
+            {
+                Toast.makeText(application, error.message, Toast.LENGTH_LONG).show()
             }
         }
     }
