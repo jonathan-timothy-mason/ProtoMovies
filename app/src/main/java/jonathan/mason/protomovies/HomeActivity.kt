@@ -45,7 +45,7 @@ class HomeActivity : AppCompatActivity(), MoviesAdapter.MovieSelectionListener, 
      * Setup up ViewModel to load and cache [Movie]s for lifetime of activity.
      */
     private fun setupViewModel() {
-        viewModel = ViewModelProvider(this).get(ProtoMoviesViewModel::class.java)
+        viewModel = ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory(this.application)).get(ProtoMoviesViewModel::class.java)
         viewModel.getMovies().observe(this, { movies ->
             setRecyclerViewAdapter(movies)
         })
