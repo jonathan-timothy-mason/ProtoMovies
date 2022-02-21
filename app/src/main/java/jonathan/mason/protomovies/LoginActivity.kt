@@ -4,23 +4,23 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.EditText
+import jonathan.mason.protomovies.databinding.ActivityLoginBinding
 
 /**
  * Initial login screen.
  */
 class LoginActivity : AppCompatActivity() {
 
-    private lateinit var email: EditText
-    private lateinit var password: EditText
+    private lateinit var binding: ActivityLoginBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
-        this.setTitle(R.string.sign_in_screen_caption)
 
-        email = this.findViewById(R.id.email)
-        password = this.findViewById(R.id.password)
+        // ActivityLoginBinding is auto-generated binding class based upon name
+        // of actual resource layout activity_login.xml.
+        binding = ActivityLoginBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        this.setTitle(R.string.sign_in_screen_caption)
     }
 
     /**
@@ -28,7 +28,7 @@ class LoginActivity : AppCompatActivity() {
      */
     fun onSignIn(button: View) {
         // Just check if any text has been entered for password.
-        if( password.text.isNullOrBlank()) {
+        if( binding.password.text.isNullOrBlank()) {
             return
         }
 

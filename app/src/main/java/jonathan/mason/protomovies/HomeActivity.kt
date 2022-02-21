@@ -1,34 +1,35 @@
 package jonathan.mason.protomovies
 
 import android.content.Intent
-import android.content.res.Configuration
-import android.graphics.Rect
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import jonathan.mason.protomovies.api.EXTRA_MOVIE_ID
 import jonathan.mason.protomovies.api.Movie
 import jonathan.mason.protomovies.api.ProtoMoviesViewModel
+import jonathan.mason.protomovies.databinding.ActivityHomeBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
 
 class HomeActivity : AppCompatActivity(), MoviesAdapter.MovieSelectionListener, CoroutineScope by MainScope() {
 
-    private lateinit var recyclerView: RecyclerView
+    private lateinit var binding: ActivityHomeBinding
     private lateinit var viewModel: ProtoMoviesViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_home)
+
+        // ActivityHomeBinding is auto-generated binding class based upon name
+        // of actual resource layout activity_login.xml.
+        binding = ActivityHomeBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         this.setTitle(R.string.home_screen_caption)
 
         // Set up to use GridLayoutManager (movies adapter created after movies have loaded).
         var numberColumns = 2
-        recyclerView = this.findViewById(R.id.recycler_view)
-        recyclerView.setLayoutManager(GridLayoutManager(this, numberColumns))
+        binding.recyclerView.setLayoutManager(GridLayoutManager(this, numberColumns))
 
         this.setupViewModel()
 
@@ -65,6 +66,6 @@ class HomeActivity : AppCompatActivity(), MoviesAdapter.MovieSelectionListener, 
      */
     private fun setRecyclerViewAdapter(movies: List<Movie>) {
         // Set adapter of RecycleView (this causes it to update itself).
-        recyclerView.setAdapter(MoviesAdapter(movies,this))
+        binding.recyclerView.setAdapter(MoviesAdapter(movies,this))
     }
 }
