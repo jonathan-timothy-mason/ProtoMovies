@@ -11,6 +11,8 @@ import androidx.recyclerview.widget.RecyclerView
 import jonathan.mason.protomovies.api.EXTRA_MOVIE_ID
 import jonathan.mason.protomovies.api.Movie
 import jonathan.mason.protomovies.api.ProtoMoviesViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.MainScope
 
 class HomeActivity : AppCompatActivity(), MoviesAdapter.MovieSelectionListener {
 

@@ -1,6 +1,6 @@
 package jonathan.mason.protomovies.api
 
-import retrofit2.Call
+import retrofit2.Response
 import retrofit2.http.*
 
 /**
@@ -11,6 +11,6 @@ interface ProtoMoviesAPI {
      * Get [Movie]s from endpoint.
      */
     @GET("interview")
-    fun getMovies(): Call<List<Movie>>
+    suspend fun getMovies(): Response<List<Movie>>
 }
 
